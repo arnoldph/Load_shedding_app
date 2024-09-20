@@ -1,0 +1,23 @@
+{
+  "name": "assignment_3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"node server.js\" \"node proxy.js\"",
+    "dev": "concurrently \"nodemon server.js\" \"nodemon proxy.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^3.1.4"
+  }
+}

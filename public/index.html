@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Shedding Notification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <img src="branding.png" alt="Branding">
+        <div class="menu-icon" id="menu-icon">
+            &#9776; <!-- Unicode for hamburger icon -->
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <div class="header">Mtlakase Notification - Gauteng</div>
+    <div id="status" class="status">Eskom Status: Not Load Shedding</div>
+    <div class="search-container">
+        <input type="text" id="suburb-search" placeholder="Search for a suburb...">
+        <select id="suburb-select">
+            <option value="">Select a suburb</option>
+        </select>
+    </div>
+
+    <div id="schedule"></div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="status_update.js"></script>
+    <script src="script.js"></script>
+    <script src="menu.js"></script> <!-- Add this line for the menu script -->
+</body>
+</html>

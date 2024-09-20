@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Shedding Notifier</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7da;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .status {
+            padding: 10px;
+            font-size: 18px;
+        }
+        .status-green {
+            color: green;
+        }
+        .status-red {
+            color: red;
+        }
+        .time-slots {
+            margin-top: 20px;
+        }
+        .time-slot {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .time-slot:last-child {
+            border-bottom: none;
+        }
+        .time {
+            font-size: 16px;
+        }
+        .level {
+            font-size: 16px;
+            border-radius: 50%;
+            padding: 5px 10px;
+            color: white;
+        }
+        .level-1 { background: #FFEB3B; }
+        .level-2 { background: #FFC107; }
+        .level-3 { background: #FF9800; }
+        .level-4 { background: #FF5722; }
+        .level-5 { background: #F44336; }
+        .level-6 { background: #E91E63; }
+        .level-7 { background: #9C27B0; }
+        .level-8 { background: #673AB7; }
+
+        /* New styles for day, month, and date */
+        .date {
+            display: flex;
+            gap: 10px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .day {
+            font-weight: bold;
+            color: #333;
+        }
+        .month {
+            color: #666;
+        }
+        .date-number {
+            color: #999;
+        }
+    </style>
+    <script src="script.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Load Shedding Notifier</h1>
+    </div>
+    <div class="status status-green">
+        <div class="time-slot" id="schedule">
+            <!-- Example of how the date elements might be structured -->
+            <div class="date">
+                <span class="day">Monday</span>
+                <span class="month">October</span>
+                <span class="date-number">10</span>
+            </div>
+            <div class="details">
+                <!-- Other details here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(function() {
+        // You can add any additional jQuery UI functionalities here if needed.
+    });
+</script>
+</body>
+</html>
