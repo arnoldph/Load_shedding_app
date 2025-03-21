@@ -1,12 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const menuIcon = document.getElementById('menu-icon');
     const navLinks = document.getElementById('nav-links');
 
-    menuIcon.addEventListener('click', function() {
-        if (navLinks.style.display === 'block') {
-            navLinks.style.display = 'none';
-        } else {
-            navLinks.style.display = 'block';
-        }
+    menuIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active'); // Toggle the 'active' class
     });
 });

@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const scheduleDiv = document.getElementById('schedule');
+    const scheduleMessage = document.getElementById('schedule-message');
     const suburbSelect = document.getElementById('suburb-select');
 
     // Fetch and populate suburb data
     const MUNICIPALITY_ID = 166; // Example municipality ID
     await populateSuburbDropdown(MUNICIPALITY_ID);
-
-   
 
     // Add event listener for suburb selection
     suburbSelect.addEventListener('change', async () => {
@@ -14,9 +13,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (suburbId) {
             const provinceId = 3; // Example province ID
             const municipalityTotal = 1; // Example municipality total
-            await fetchAndRenderSchedule(suburbId, provinceId, municipalityTotal);
+
+            // Fetch and render the schedule
+            const scheduleLoaded = await fetchAndRenderSchedule(suburbId, provinceId, municipalityTotal);
+
+            // Hide the message if the schedule is loaded
+            if (scheduleLoaded) {
+                scheduleMessage.style.display = 'none';
+            } else {
+                scheduleMessage.style.display = 'block';
+            }
         } else {
-            scheduleDiv.innerHTML = 'Please select a suburb.';
+            scheduleMessage.style.display = 'block';
+            scheduleDiv.innerHTML = ''; // Clear the schedule if no suburb is selected
         }
     });
 
@@ -24,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         suburbSelect.innerHTML = '<option value="">Select a suburb</option>'; // Clear previous options
         const pageSize = 5093;
         const pageNum = 1;
-    
+
         try {
             const url = `http://localhost:3000/proxy?url=${encodeURIComponent(`http://loadshedding.eskom.co.za/LoadShedding/GetSurburbData/?pageSize=${pageSize}&pageNum=${pageNum}&id=${municipalityId}`)}`;
             console.log('Fetching suburb data from:', url); // Debugging step
@@ -34,11 +43,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             const data = await response.json();
             console.log('Suburb data:', data); // Log the data to check if it's correct
-    
+
             if (!data.Results || !Array.isArray(data.Results)) {
                 throw new Error('Expected an array in the Results property but received a different type');
             }
-    
+
             data.Results.forEach(suburb => {
                 const option = document.createElement('option');
                 option.value = suburb.id;
@@ -47,20 +56,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         } catch (error) {
             console.error('Error fetching suburb data:', error);
-        }
-    }
-
-    function filterSuburbs(searchTerm) {
-        const options = suburbSelect.options;
-        for (let i = 0; i < options.length; i++) {
-            const option = options[i];
-            const text = option.textContent.toLowerCase();
-            const value = option.value;
-            if (text.includes(searchTerm.toLowerCase()) || value.includes(searchTerm)) {
-                option.style.display = '';
-            } else {
-                option.style.display = 'none';
-            }
         }
     }
 
@@ -76,9 +71,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(data); // Log the response
 
             const stageNumber = data.stage;
-            const htmlContent = data.schedule;
 
-            // Render the filtered data
+            // If stage is 0, display "Not Load Shedding" for each day
+            if (stageNumber === 0) {
+                displayNoLoadSheddingSchedule(scheduleDiv);
+                return true; // Indicate that the schedule was successfully loaded
+            }
+
+            // Otherwise, render the schedule as usual
+            const htmlContent = data.schedule;
             const extractedData = extractDayAndTimes(htmlContent);
             const groupedData = groupByDay(extractedData);
 
@@ -109,9 +110,48 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 scheduleDiv.appendChild(daySection);
             }
+            return true; // Indicate that the schedule was successfully loaded
         } catch (error) {
             console.error('Error fetching data:', error);
             scheduleDiv.innerHTML = 'Failed to load data.';
+            return false; // Indicate that the schedule was not loaded
+        }
+    }
+
+    /**
+     * Displays "Not Load Shedding" for each day in the schedule section.
+     * @param {HTMLElement} scheduleDiv - The schedule container element.
+     */
+    function displayNoLoadSheddingSchedule(scheduleDiv) {
+        // Get today's date
+        const today = new Date();
+
+        // Loop through the next 20 days
+        for (let i = 0; i < 25; i++) {
+            const currentDate = new Date(today);
+            currentDate.setDate(today.getDate() + i);
+
+            // Format the date (e.g., "Monday, 25 March 2025")
+            const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
+            const formattedDate = currentDate.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+
+            // Create a section for the day
+            const daySection = document.createElement('div');
+            daySection.classList.add('day-section');
+
+            // Add the day and date as a header
+            const dayHeader = document.createElement('h3');
+            dayHeader.textContent = `${dayOfWeek}, ${formattedDate}`;
+            daySection.appendChild(dayHeader);
+
+            // Add the "Not Load Shedding" message
+            const noLoadSheddingMessage = document.createElement('div');
+            noLoadSheddingMessage.classList.add('time-slot');
+            noLoadSheddingMessage.textContent = 'Not Load Shedding';
+            daySection.appendChild(noLoadSheddingMessage);
+
+            // Append the section to the schedule container
+            scheduleDiv.appendChild(daySection);
         }
     }
 
