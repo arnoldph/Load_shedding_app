@@ -1,16 +1,12 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const scheduleDiv = document.getElementById('schedule');
-    const suburbSearch = document.getElementById('suburb-search');
     const suburbSelect = document.getElementById('suburb-select');
 
     // Fetch and populate suburb data
     const MUNICIPALITY_ID = 166; // Example municipality ID
     await populateSuburbDropdown(MUNICIPALITY_ID);
 
-    // Add event listener for search input
-    suburbSearch.addEventListener('input', () => {
-        filterSuburbs(suburbSearch.value);
-    });
+   
 
     // Add event listener for suburb selection
     suburbSelect.addEventListener('change', async () => {
@@ -77,6 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
+            console.log(data); // Log the response
 
             const stageNumber = data.stage;
             const htmlContent = data.schedule;

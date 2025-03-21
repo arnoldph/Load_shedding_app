@@ -1,12 +1,12 @@
 {
-  "name": "assignment_3",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "start": "concurrently \"node server.js\" \"node proxy.js\"",
-    "dev": "concurrently \"nodemon server.js\" \"nodemon proxy.js\""
-  },
+"scripts": {
+  "start": "node backend/server.js",
+  "dev": "concurrently \"nodemon backend/server.js\" \"nodemon backend/proxy.js\""
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -14,6 +14,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "proxy": "^2.2.0",
     "request": "^2.88.2"
   },
   "devDependencies": {

@@ -6,35 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Load Shedding Notification</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav>
-        <img src="branding.png" alt="Branding">
-        <div class="menu-icon" id="menu-icon">
-            &#9776; <!-- Unicode for hamburger icon -->
-        </div>
-        <div class="nav-links" id="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+        <div class="nav-container">
+            <img src="branding.png" alt="Branding" class="brand-logo">
+            <div class="menu-icon" id="menu-icon">
+                &#9776; <!-- Unicode for hamburger icon -->
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#" class="nav-link">Home</a>
+            </div>
         </div>
     </nav>
 
-    <div class="header">Mtlakase Notification - Gauteng</div>
-    <div id="status" class="status">Eskom Status: Not Load Shedding</div>
-    <div class="search-container">
-        <input type="text" id="suburb-search" placeholder="Search for a suburb...">
-        <select id="suburb-select">
-            <option value="">Select a suburb</option>
-        </select>
-    </div>
+    <!-- Header -->
+    <header class="header">
+        <h1>Mtlakase Notification - City of Johannesburg</h1>
+    </header>
 
-    <div id="schedule"></div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Status Section -->
+        <section class="status-section">
+            <div id="status" class="status">Eskom Status: Not Load Shedding</div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <select id="suburb-select" class="search-select">
+                    <option value="">Select a suburb</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section class="schedule-section">
+            <div id="schedule" class="schedule"></div>
+        </section>
+    </main>
 
     <!-- Link to the JavaScript file -->
     <script src="status_update.js"></script>
     <script src="script.js"></script>
-    <script src="menu.js"></script> <!-- Add this line for the menu script -->
+    <script src="menu.js"></script>
 </body>
 </html>

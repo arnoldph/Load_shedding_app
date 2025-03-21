@@ -1,135 +1,254 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #333;
-    color: #eee;
+/* General Styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-.header {
-    background-color: #4caf50;
-    padding: 15px;
-    text-align: center;
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #2c3e50;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brand-logo {
+    height: 40px;
+}
+
+.menu-icon {
     color: white;
     font-size: 24px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
 }
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #1abc9c;
+}
+
+/* Header */
+.header {
+    background-color: #1abc9c;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Status Section */
+.status-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 .status {
-    background-color: #00aa00;
-    color: white;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Search Section */
+.search-section {
+    margin-bottom: 2rem;
+}
+
+/* Style for the search container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 90%; /* Ensure it doesn't overflow the container */
     padding: 10px;
-    text-align: center;
-    font-size: 20px;
+    box-sizing: border-box;
 }
-.outlook {
-    background-color: #004d00;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    font-size: 14px;
+
+.search-input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 300px;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
-.schedule {
-    margin: 20px;
+
+.search-input:focus {
+    border-color: #1abc9c;
 }
-.day-section {
-    background-color: #000;
+/* Style for the select element */
+.search-select {
+    width: 100%; /* Make it responsive */
+    max-width: 400px; /* Set a maximum width */
     padding: 10px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
+    background-color: #fff;
+    appearance: none; /* Remove default browser styling */
 }
+
+.search-select:focus {
+    border-color: #1abc9c;
+}
+
+/* Add a hover effect for better UX */
+.search-select:hover {
+    border-color: #007bff;
+}
+
+/* Schedule Section */
+.schedule-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.day-section {
+    margin-bottom: 1.5rem;
+}
+
+.day-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
 .time-slot {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
-    border-bottom: 1px solid #555;
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
 }
+
 .time-slot:last-child {
     border-bottom: none;
 }
-.time {
-    color: #00ff00;
+
+/* Mobile Styles */
+/* Schedule Section - Dark Theme with Visible Text */
+.schedule-section {
+    background-color: #2c3e50; /* Dark background */
+    padding: 2rem;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    color: #f4f4f9; /* Light text color */
+    border: 1px solid #34495e; /* Nice border */
 }
-.stage {
-    background-color: #444;
-    color: #ffcc00;
-    padding: 5px 10px;
-    border-radius: 50%;
-    font-weight: bold;
-}
-nav {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
+
+.schedule {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.day-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #34495e; /* Slightly lighter dark background */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #3b4a5e; /* Subtle border */
+}
+
+.day-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1abc9c; /* Accent color for headings */
+    margin-bottom: 1rem;
+}
+
+.time-slot {
+    display: flex;
     justify-content: space-between;
-}
-nav img {
-    height: 50px; /* Adjust the height as needed */
-}
-nav .menu-icon {
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    display: none; /* Hide by default */
-}
-nav .nav-links {
-    display: flex;
-    gap: 15px;
-}
-nav .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-nav .nav-links a:hover {
-    background-color: #555;
+    padding: 0.75rem;
+    border-bottom: 1px solid #3b4a5e; /* Subtle border between time slots */
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    color: #f4f4f9; /* Light text color */
 }
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-    nav .menu-icon {
-        display: block; /* Show the menu icon */
-    }
-
-    nav .nav-links {
-        display: none; /* Hide the menu by default */
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        background-color: #333;
-    }
-
-    nav .nav-links a {
-        width: 100%;
-        text-align: center;
-        padding: 15px 0;
-        border-top: 1px solid #444;
-    }
+.time-slot:hover {
+    background-color: #3b4a5e; /* Highlight on hover */
 }
 
-.search-container {
+.time-slot:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+
+.time-slot .time {
+    font-weight: 500;
+    color: #f4f4f9; /* Light text color */
+}
+
+.time-slot .stage {
+    font-weight: 500;
+    color: #1abc9c; /* Accent color for stage */
+}
+
+/* Additional Styling for Better Visibility */
+.schedule-section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f4f4f9; /* Light text color */
+    margin-bottom: 1.5rem;
     text-align: center;
-    margin: 20px 0;
 }
-.search-container input {
-    padding: 10px;
-    width: 300px;
+
+.schedule-section p {
     font-size: 16px;
-}
-.search-container select {
-    padding: 10px;
-    width: 320px;
-    font-size: 16px;
-    margin-top: 10px;
-    color: #333; /* Change the text color to #333 */
-    background-color: #f0f0f0; /* Change the background color */
-}
-.search-container select option {
-    color: #333; /* Change the text color of options to #333 */
-    background-color: #f0f0f0; /* Change the background color of options */
-}
-.search-container select option:first-child {
-    color: #333; /* Change the text color of the first option to #333 */
-    background-color: #f0f0f0; /* Change the background color of the first option */
+    color: #f4f4f9; /* Light text color */
+    margin-bottom: 1rem;
+    line-height: 1.6;
 }
